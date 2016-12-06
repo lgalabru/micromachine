@@ -4,39 +4,43 @@
 
 #### Creating a new service
 
-    class HelloWorldService extends Micromachine.Service {
-
+    class SayHelloService extends Micromachine.Service {
+      
+      // Implement your microservice using Single Responsability Principle
       execute() {
-        // Get your inputs
-        console.log(this.user_id);
-
-        // Implement your microservice using Single Responsability Principle
+        if (false) {
+          throw new Error('Something went wrong');
+        }
+        return { message: `Running microservice saying hello to ${this.firstname}` };
       }
     }
 
-    HelloWorldService.inputs = {
-      required: ['user_id'],
-      optional: ['service_id'],
+    SayHelloService.inputs = {
+      required: ['first_name'],
+      optional: ['last_name'],
     };
 
 
 #### Using this service synchronously
 
-    let service = new HelloWorldService();
-    service.run( {user_id: 3} );
+    let service = new SayHelloService();
+    service.run({ first_name: 'Ludo' })
+      .then((data) => { console.log(data); });
+      .catch((error => { console.error(error); }));
 
 #### Using this service as a HTTP Endpoint
 
 You can simply declare in your index.js
 
-    let endpoint = new HelloWorldService();
+    let endpoint = new SayHelloService();
     endpoint.runtime = new Micromachine.HTTPEndpoint({
       port: 5000,
       path: '/hello',
-      HTTPMethod: HTTPMethods.GET,
     });
 
-    endpoint.run();
+    endpoint.run()
+      .then((data) => { console.log(data); });
+      .catch((error => { console.error(error); }));
 
 #### Using this service on AWS Lambda
 
@@ -45,11 +49,11 @@ You can simply declare in your index.js
     // index.js
 
     exports.handler = function(event, context) {
-      let lambda = new HelloWorldService();
+      let lambda = new SayHelloService();
       lambda.runtime = Micromachine.AWSLambda();
 
-      lambda.run({
-	    event: event,
-	    context: context,
-	  });
+      lambda.run({ event: event, context: context })
+	   .then((data) => { console.log(data); });
+       .catch((error => { console.error(error); }));
+
 	}
