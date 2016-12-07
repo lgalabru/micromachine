@@ -1,4 +1,4 @@
-const Micromachine = require('rfr')('lib/micromachine');
+const Micromachine = require('../source/micromachine');
 
 class SayHelloService extends Micromachine.Service {
 

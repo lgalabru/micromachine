@@ -1,5 +1,4 @@
 const Hapi = require('hapi');
-const Runtime = require('rfr')('lib/runtimes/base');
 
 class HTTPMethod {
 
@@ -27,10 +26,9 @@ class PUT extends POST {}
 class HEAD extends POST {}
 class PATCH extends POST {}
 
-class HTTPEndpoint extends Runtime.default {
+class HTTPEndpoint {
 
   constructor(options = { port: 5000 }) {
-    super();
     try {
       this.HTTPMethod = new options.HTTPMethod();
     } catch (e) {
