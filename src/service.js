@@ -46,7 +46,7 @@ class Service {
         reject(e);
       }
     } else {
-      errors.push(`Required inputs are missing: ${missingInputs}`);
+      errors.push(`${this.constructor.name} requires missing inputs: ${missingInputs}`);
       reject(errors);
     }
     return this;
