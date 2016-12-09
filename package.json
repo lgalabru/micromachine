@@ -1,6 +1,6 @@
 {
   "name": "micromachine",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Microservices toolbox for Humans.",
   "main": "lib/micromachine.js",
   "scripts": {
