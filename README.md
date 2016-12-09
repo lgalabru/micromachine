@@ -1,9 +1,11 @@
 #### Installation
 
-    npm install micromachine
+    npm install micromachine --save
 
 #### Creating a new service
 
+    const Micromachine = require('micromachine');
+    
     class SayHelloService extends Micromachine.Service {
       
       // Implement your microservice using Single Responsability Principle
@@ -23,10 +25,14 @@
 
 #### Using this service synchronously
 
-    let service = new SayHelloService();
-    service.run({ first_name: 'Ludo' })
+    SayHelloService.run({ first_name: 'Ludo' })
+
+Cherry on top, the run method returns a Promise.
+
+    SayHelloService.run({ first_name: 'Ludo' })
       .then((data) => { console.log(data); });
       .catch((error => { console.error(error); }));
+
 
 #### Using this service as a HTTP Endpoint
 
