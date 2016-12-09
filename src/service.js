@@ -13,6 +13,12 @@ class Service {
     }
   }
 
+  static run(inputs = {}) {
+    const c = { Class: this };
+    const instance = new c.Class();
+    return instance.run(inputs);
+  }
+
   run(inputs = {}) {
     let promise;
     if (this.runtime != null) {
