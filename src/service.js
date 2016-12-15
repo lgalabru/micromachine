@@ -35,17 +35,21 @@ class Service {
     const errors = [];
     const missingInputs = [];
 
-    this.requiredInputs.forEach((key) => {
-      if (inputs[key] == null) {
-        missingInputs.push(key);
-      } else {
-        this[key] = inputs[key];
-      }
-    });
-    if (missingInputs.length === 0) {
-      this.optionalInputs.forEach((key) => {
-        this[key] = inputs[key];
+    if (this.requiredInputs !== undefined) {
+      this.requiredInputs.forEach((key) => {
+        if (inputs[key] == null) {
+          missingInputs.push(key);
+        } else {
+          this[key] = inputs[key];
+        }
       });
+    }
+    if (missingInputs.length === 0) {
+      if (this.optionalInputs !== undefined) {
+        this.optionalInputs.forEach((key) => {
+          this[key] = inputs[key];
+        });
+      }
       try {
         resolve(this.execute());
       } catch (e) {

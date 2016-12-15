@@ -1,6 +1,6 @@
 {
   "name": "micromachine",
-  "version": "0.0.7",
+  "version": "1.0.0-beta.1",
   "description": "Microservices toolbox for Humans.",
   "main": "lib/micromachine.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "babel-cli": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "chai": "^3.5.0",
+    "rfr": "^1.2.3",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-config-airbnb-base": "^10.0.1",
