@@ -1,6 +1,5 @@
 const Service = require('./service').default;
-const AWSLambda = require('./runtimes/aws_lambda').default;
-const HTTPEndpoint = require('./runtimes/http_endpoint').default;
+const Runtime = require('./runtime/runtime').default;
+const OneOffRuntime = require('./runtime/one_off_runtime').default;
 
-export { Service };
-export { HTTPEndpoint, AWSLambda };
+export { Service, Runtime, OneOffRuntime };

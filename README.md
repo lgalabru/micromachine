@@ -4,62 +4,33 @@
 
 #### Creating a new service
 
-    const Micromachine = require('micromachine');
-    
-    class SayHelloService extends Micromachine.Service {
-      
+    import { Service } from 'micromachine';
+
+    class SayHelloService extends Service {
+
+      inputs() {
+        super.inputs();
+        super.required('firstname');
+        super.optional('lastname')
+      }
+
       // Implement your microservice using Single Responsability Principle
-      execute() {
-        if (false) {
-          throw new Error('Something went wrong');
-        }
-        return { message: `Running microservice saying hello to ${this.firstname}` };
+      execute(operation) {
+        return { message: `Running microservice saying hello to ${operation.firstname}` };
       }
     }
 
-    SayHelloService.inputs = {
-      required: ['first_name'],
-      optional: ['last_name'],
-    };
-
-
 #### Using this service synchronously
 
-    SayHelloService.run({ first_name: 'Ludo' })
+    SayHelloService.run({ firstname: 'Ludo' })
 
 Cherry on top, the run method returns a Promise.
 
-    SayHelloService.run({ first_name: 'Ludo' })
+    SayHelloService.run({ firstname: 'Ludo' })
       .then((data) => { console.log(data); });
       .catch((error => { console.error(error); }));
 
 
-#### Using this service as a HTTP Endpoint
+#### Using this service as a RabbitMQ consumer
 
-You can simply declare in your index.js
-
-    let endpoint = new SayHelloService();
-    endpoint.runtime = new Micromachine.HTTPEndpoint({
-      port: 5000,
-      path: '/hello',
-    });
-
-    endpoint.run()
-      .then((data) => { console.log(data); });
-      .catch((error => { console.error(error); }));
-
-#### Using this service on AWS Lambda
-
-You can simply declare in your index.js
-
-    // index.js
-
-    exports.handler = function(event, context) {
-      let lambda = new SayHelloService();
-      lambda.runtime = Micromachine.AWSLambda();
-
-      lambda.run({ event: event, context: context })
-	   .then((data) => { console.log(data); });
-       .catch((error => { console.error(error); }));
-
-	}
+Visit https://github.com/lgalabru/micromachine-amqp

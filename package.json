@@ -1,6 +1,6 @@
 {
   "name": "micromachine",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.3",
   "description": "Microservices toolbox for Humans.",
   "main": "lib/micromachine.js",
   "scripts": {
@@ -8,21 +8,17 @@
     "build": "babel src --presets latest --out-dir lib",
     "prepublish": "npm run build"
   },
-  "dependencies": {
-    "hapi": "^15.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "chai": "^3.5.0",
-    "rfr": "^1.2.3",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.7.1",
-    "rfr": "^1.2.3",
     "mocha": "^3.2.0"
   },
   "keywords": [
